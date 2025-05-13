@@ -23,8 +23,8 @@ from api.views import (CategoriaViewSet, DichoViewSet, GetDicho, cargarDatos)
 
 
 router = routers.DefaultRouter()
-router.register(r'categorias', CategoriaViewSet, base_name='categorias')
-router.register(r'dichos', DichoViewSet, base_name='dichos')
+router.register(r'categorias', CategoriaViewSet, basename='categorias')
+router.register(r'dichos', DichoViewSet, basename='dichos')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
