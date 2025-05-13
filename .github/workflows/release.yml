@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
+      - name: checkout-repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332    # v4.1.7
+        with:
+          ref: ${{ github.event.pull_request.head.ref }
+
       - run: |
           export TAG=$(echo $GITHUB_REF | cut -f3 -d/)
           docker login -u bernanoria -p $DOCKER_PASS
@@ -22,6 +27,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: checkout-repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332    # v4.1.7
+        with:
+          ref: ${{ github.event.pull_request.head.ref }
+
       - run: |
           export TAG=$(echo $GITHUB_REF | cut -f3 -d/)
           sed -i "s|\(image: .*:\).*|\1${TAG}|" k8s/deployment.yml

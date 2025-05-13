@@ -10,5 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
+
+      - name: checkout-repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332    # v4.1.7
+        with:
+          ref: ${{ github.event.pull_request.head.ref }
+
       - run: |
           docker build -f Dockerfile -t bernanoria/sabescomotedicen:$GITHUB_RUN_ID .
