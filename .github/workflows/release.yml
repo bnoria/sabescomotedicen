@@ -39,4 +39,5 @@ jobs:
           git checkout master
           git add k8s/deployment.yml
           git commit -m "Release version $TAG"
+          git branch
           git push origin master
