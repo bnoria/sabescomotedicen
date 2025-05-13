@@ -36,6 +36,7 @@ jobs:
           sed -i "s|\(image: .*:\).*|\1${TAG}|" k8s/deployment.yml
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git checkout master
           git add k8s/deployment.yml
           git commit -m "Release version $TAG"
-          git push
+          git push origin master
