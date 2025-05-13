@@ -24,6 +24,7 @@ jobs:
   promote:
     runs-on: ubuntu-latest
     environment: production
+    needs: releaase-tag
     permissions:
       contents: write
     steps:
@@ -37,4 +38,4 @@ jobs:
           git config user.email github-actions@github.com
           git add k8s/deployment.yml
           git commit -m "Release version $TAG"
-          git push origin master
+          git push
