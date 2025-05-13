@@ -13,7 +13,7 @@ jobs:
       - name: checkout-repo
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332    # v4.1.7
         with:
-          ref: ${{ github.event.pull_request.head.ref }
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - run: |
           export TAG=$(echo $GITHUB_REF | cut -f3 -d/)
@@ -30,7 +30,7 @@ jobs:
       - name: checkout-repo
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332    # v4.1.7
         with:
-          ref: ${{ github.event.pull_request.head.ref }
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - run: |
           export TAG=$(echo $GITHUB_REF | cut -f3 -d/)
