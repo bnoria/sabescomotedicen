@@ -15,7 +15,9 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - run: |
+      - env:
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        run: |
           export TAG=$(echo $GITHUB_REF | cut -f3 -d/)
           docker login -u bernanoria -p $DOCKER_PASS
           docker build -f Dockerfile -t bernanoria/sabescomotedicen:$TAG .
