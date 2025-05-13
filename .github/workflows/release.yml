@@ -1,0 +1,30 @@
+---
+name: Release_Tag_Docker
+on:
+  push:
+    tags:
+      - "**"
+
+jobs:
+  releaase-tag:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - run: |
+          export TAG=$(echo $GITHUB_REF | cut -f3 -d/)
+          docker login -u bernanoria -p $DOCKER_PASS
+          docker build -f Dockerfile -t bernanoria/sabescomotedicen:$TAG .
+          docker push bernanoria/sabescomotedicen:$TAG
+  
+  promote:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: write
+    steps:
+      - run: |
+          export TAG=$(echo $GITHUB_REF | cut -f3 -d/)
+          sed -i "s|\(image: .*:\).*|\1${TAG}|" k8s/deployment.yml
+          git add k8s/deployment.yml
+          git commit -m "Release version $TAG"
+          git push origin master
