@@ -28,7 +28,8 @@ jobs:
     steps:
       - name: checkout-repo
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332    # v4.1.7
-        ref: master
+        with:
+          ref: master
 
       - name: Promote version
         run: |
