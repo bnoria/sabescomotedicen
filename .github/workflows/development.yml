@@ -8,6 +8,7 @@ on:
       - '.github/**'
       - 'k8s/**'
       - 'requerimientos.txt'
+  workflow_dispatch:
 
 jobs:
   buiddocker:
