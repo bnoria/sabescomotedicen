@@ -2,7 +2,13 @@
 name: Build_Docker
 on:
   push:
-      branches: ["develop", 'feature/*']
+    branches: ["develop", 'feature/*']
+    paths-ignore:
+      - 'README.md'
+      - '.github/**'
+      - 'k8s/**'
+      - 'requerimientos.txt'
+  workflow_dispatch:
 
 jobs:
   buiddocker:
@@ -19,6 +25,7 @@ jobs:
 
   deploy-dev:
     runs-on: ubuntu-latest
+    needs: buiddocker
     environment: dev
     steps:
       - run: |
