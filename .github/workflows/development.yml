@@ -1,5 +1,5 @@
 ---
-name: Build_Docker
+name: Build and Deploy to Dev
 on:
   push:
     branches: ["develop", 'feature/*']
