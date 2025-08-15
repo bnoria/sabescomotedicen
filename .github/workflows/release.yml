@@ -3,6 +3,11 @@ name: Release_Tag_Docker
 on:
   push:
     branches: ["master"]
+    paths-ignore:
+      - 'README.md'
+      - '.github/'
+      - 'k8s/'
+      - 'requerimientos.txt'
 
 jobs:
   releaase-version:
@@ -15,9 +20,7 @@ jobs:
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
         run: |
           export TAG=$(echo $GITHUB_REF | cut -f3 -d/)
-          docker login -u bernanoria -p $DOCKER_PASS
           docker build -f Dockerfile -t bernanoria/sabescomotedicen:$TAG .
-          docker push bernanoria/sabescomotedicen:$TAG
   
   promote-prod:
     runs-on: ubuntu-latest
