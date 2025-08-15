@@ -2,7 +2,12 @@
 name: Build_Docker
 on:
   push:
-      branches: ["develop", 'feature/*']
+    branches: ["develop", 'feature/*']
+    paths-ignore:
+      - 'README.md'
+      - '.github/**'
+      - 'k8s/**'
+      - 'requerimientos.txt'
 
 jobs:
   buiddocker:
