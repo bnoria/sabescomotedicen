@@ -2,13 +2,11 @@
 name: Build_Docker
 on:
   push:
-    pull_request:
-      branches: ["master"]
+      branches: ["develop", 'feature/*']
 
 jobs:
   buiddocker:
     runs-on: ubuntu-latest
-    environment: dev
     steps:
 
       - name: checkout-repo
@@ -18,3 +16,10 @@ jobs:
 
       - run: |
           docker build -f Dockerfile -t bernanoria/sabescomotedicen:$GITHUB_RUN_ID .
+
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - run: |
+          echo "Despliegando la imagen a Docker Hub"
